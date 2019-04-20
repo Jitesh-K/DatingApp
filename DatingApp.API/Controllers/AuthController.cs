@@ -53,6 +53,9 @@ namespace DatingApp.API.Controllers
 
         public async Task<IActionResult> Login([FromBody]UserForLoginDto userForLoginDto)
         {
+
+            try {
+                throw new Exception("Lauda");
             var userFromRepo = await _repo.Login(userForLoginDto.Username, userForLoginDto.Password);
             
             if(userFromRepo == null)
@@ -78,9 +81,16 @@ namespace DatingApp.API.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
+
             return Ok(new {
                 token = tokenHandler.WriteToken(token)
             });
+
+        }
+            catch {
+                return StatusCode(500,"manually hai be");
+            }
+           
 
         }
     }
