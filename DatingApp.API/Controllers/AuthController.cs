@@ -53,7 +53,6 @@ namespace DatingApp.API.Controllers
 
         public async Task<IActionResult> Login([FromBody]UserForLoginDto userForLoginDto)
         {
-            throw new Exception("Lauda");
             var userFromRepo = await _repo.Login(userForLoginDto.Username, userForLoginDto.Password);
             
             if(userFromRepo == null)
